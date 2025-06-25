@@ -2,17 +2,44 @@ package main
 
 import "fmt"
 
-const helloPrefix = "Hello, "
+const (
+	spanishLang         = "Spanish"
+	frenchLang          = "French"
+	japaneseLang        = "Japanese"
+	defaultName         = "World"
+	helloPrefix         = "Hello, "
+	spanishHelloPrefix  = "Hola, "
+	frenchHelloPrefix   = "Bonjour, "
+	japaneseHelloPrefix = "Konnichiwa, "
+)
 
-func Hello(name string) string {
+func Hello(name, language string) string {
 
 	if name == "" {
-		name = "World"
+
+		name = defaultName
 	}
 
-	return helloPrefix + name
+	return greetingPrefix(language) + name
+}
+
+func greetingPrefix(language string) (prefix string) {
+
+	switch language {
+
+	case spanishLang:
+		prefix = spanishHelloPrefix
+	case frenchLang:
+		prefix = frenchHelloPrefix
+	case japaneseLang:
+		prefix = japaneseHelloPrefix
+	default:
+		prefix = helloPrefix
+	}
+
+	return // Al asignar la variable de prefix desde la declaracion, no es necesario especificarlo en el return
 }
 
 func main() {
-	fmt.Println(Hello(""))
+	fmt.Println(Hello("", ""))
 }
