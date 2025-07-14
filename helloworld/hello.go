@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"mikkygolearning.com/mocking"
+	"os"
+)
 
 const (
 	spanishLang         = "Spanish"
@@ -41,5 +45,12 @@ func greetingPrefix(language string) (prefix string) {
 }
 
 func main() {
+
 	fmt.Println(Hello("", ""))
+	//dependency_injection.Greet(os.Stdout, "Mikky")
+
+	sleeper := &mocking.DefaultSleeper{}
+	mocking.Countdown(os.Stdout, sleeper)
+
+	//log.Fatal(http.ListenAndServe(":5001", http.HandlerFunc(dependency_injection.MyGreeterHandler)))
 }
